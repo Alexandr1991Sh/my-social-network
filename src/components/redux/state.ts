@@ -2,7 +2,7 @@ import { RootActionType } from "../../types/actionType"
 import { dialogReducer } from "./reducer/dialogsReducer"
 import { profileReducer } from "./reducer/profileReducer"
 
-export type StateType = {
+export type StateType =  {
     profilePage: ProfilePageType,
     messagesPage: MassagePageType
 }
