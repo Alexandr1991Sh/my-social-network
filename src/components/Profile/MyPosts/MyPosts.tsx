@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {ChangeEvent, useRef} from 'react';
 import s from './MyPosts.module.css';
 import { PostType } from '../../redux/state';
 import Post from './Post/Post';
@@ -22,11 +22,11 @@ const MyPosts = (props:MyPostsProps) => {
         if(newTextElement.current) props.addPost(newTextElement.current.value)
     }
 
-    const updateText = () => {
-        if(newTextElement.current)  props.updateText(newTextElement.current.value)
-        
+    const updateText = (e: ChangeEvent<HTMLTextAreaElement>) => { 
+        if(newTextElement.current)  props.updateText(newTextElement.current.value) 
+        // props.updateText(e.currentTarget.value) 
     }
-
+ 
     return <div className={s.postsBlock}>
         <h3>My Posts</h3>
         <div>

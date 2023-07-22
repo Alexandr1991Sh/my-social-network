@@ -1,5 +1,7 @@
 import { rerenderEntireTree } from '../../render';
 
+
+
 export type StateType = {
     profilePage: ProfilePageType,
     messagesPage: MassagePageType
@@ -66,7 +68,14 @@ export let updateText = (newText: string)=>{
     state.profilePage.updateText = newText
     rerenderEntireTree(state);
 }
+// Пофиксить что бы брали значение поста в state / рассказать что нарушаем функциональное 
+// Написать функцию добавления нового сообщения
+// Написать функцию добавления нового сивола updateMassageText      
+// Добавление постов и сообщение по Enter
+// Добавить обнудение
+// Показать дебагером работу flux
 
+// 37 урок
 export let addPost = (postMessage: string) => {
     let newPost = {
         id: 5,
@@ -77,5 +86,9 @@ export let addPost = (postMessage: string) => {
     state.profilePage.posts.unshift(newPost)
     rerenderEntireTree(state);
 }
+
+// Определяем функцию subsribe (obsrver)=>{
+    //  rerenderEntireTree = obsrver
+// }
 
 export default state;
