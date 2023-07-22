@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 import { DialogsDateType, MassagePageType, MessagesDateType } from '../redux/state';
+import { RootActionType } from '../../types/actionType';
 
 
 type DialogsPropsType = {
     messagesPage: MassagePageType
-    addMassage: (massage: string) => void
-    updateMassageText: (newMassageText: string) => void
+    dispatch: (action: RootActionType) => void
 }
 
 export const Dialogs: React.FC<DialogsPropsType> = (props) => {
@@ -18,11 +18,12 @@ export const Dialogs: React.FC<DialogsPropsType> = (props) => {
     let newMassage = useRef<HTMLTextAreaElement>(null)
 
     const updateMassageHandler = () => {
-        if (newMassage.current) props.addMassage(newMassage.current.value)
+        if (newMassage.current) props.dispatch({type: " ADD-MESSAGE", message: newMassage.current.value})
     }
 
     const  updateMassageTextHandler = (e: ChangeEvent<HTMLTextAreaElement>)=>{
-        props.updateMassageText(e.currentTarget.value)
+        props.dispatch({type: "UPDATE-MESSAGE", newMassageText: e.currentTarget.value})
+        
     }
 
     return (

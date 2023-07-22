@@ -2,11 +2,11 @@ import React, {ChangeEvent, KeyboardEvent, useRef} from 'react';
 import s from './MyPosts.module.css';
 import { PostType } from '../../redux/state';
 import Post from './Post/Post';
+import { RootActionType } from '../../../types/actionType';
 
 type MyPostsProps = {
     myPosts: PostType[]
-    addPost:(postMessage: string)=> void
-    updateText:(newText: string) => void
+    dispatch: (action: RootActionType) => void
     newText: string
 }
 
@@ -19,11 +19,11 @@ const MyPosts = (props:MyPostsProps) => {
     let postsElements = props.myPosts.map(((el) => <Post key={el.id} title={el.message} likesCount={el.likesCount}/>))
     
     const addPost = () => {
-        if(newTextElement.current) props.addPost(newTextElement.current.value)
+        if(newTextElement.current) props.dispatch({type: "ADD-POST", newMassage: newTextElement.current.value})
     }
 
-    const updateTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => { 
-        props.updateText(e.currentTarget.value) 
+    const updateTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.dispatch({type: "UPDATE-TEXT", newText: e.currentTarget.value})
     }
 
     const onKeyDownHandler = (e: KeyboardEvent<HTMLTextAreaElement>)=>{
