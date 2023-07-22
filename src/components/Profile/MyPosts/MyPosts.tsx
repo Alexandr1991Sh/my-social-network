@@ -1,9 +1,10 @@
-import React, {ChangeEvent, KeyboardEvent, useRef} from 'react';
+import React, { ChangeEvent, KeyboardEvent, useRef } from 'react';
 import s from './MyPosts.module.css';
-import { PostType } from '../../redux/state';
+import { PostType } from '../../store/state';
 import Post from './Post/Post';
 import { RootActionType } from '../../../types/actionType';
-import { AddPostAc } from '../../redux/reducer/profileReducer';
+import { UpdateTextAC, addPostAC } from '../../store/reducers/profileReducer';
+
 
 type MyPostsProps = {
     myPosts: PostType[]
@@ -11,26 +12,25 @@ type MyPostsProps = {
     newText: string
 }
 
-const MyPosts = (props:MyPostsProps) => {
+const MyPosts = (props: MyPostsProps) => {
 
 
     let newTextElement = useRef<HTMLTextAreaElement>(null)
 
 
-    let postsElements = props.myPosts.map(((el) => <Post key={el.id} title={el.message} likesCount={el.likesCount}/>))
-    
+    let postsElements = props.myPosts.map(((el) => <Post key={el.id} title={el.message} likesCount={el.likesCount} />))
+
     const addPost = () => {
-        if(newTextElement.current) props.dispatch(AddPostAc(newTextElement.current.value))
+        if (newTextElement.current) props.dispatch(addPostAC(newTextElement.current.value))
     }
 
     const updateTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch({type: "UPDATE-TEXT", newText: e.currentTarget.value})
+        props.dispatch(UpdateTextAC(e.currentTarget.value))
+    }
+    const onKeyDownHandler = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+        if (e.key === "Enter" && newTextElement.current?.value) addPost()
     }
 
-    const onKeyDownHandler = (e: KeyboardEvent<HTMLTextAreaElement>)=>{
-        if(e.key === "Enter" &&  newTextElement.current?.value) addPost()
-    }
- 
     return <div className={s.postsBlock}>
         <h3>My Posts</h3>
         <div>
@@ -42,7 +42,7 @@ const MyPosts = (props:MyPostsProps) => {
             </div>
         </div>
         <div className={s.posts}>
-        {postsElements}
+            {postsElements}
         </div>
     </div>
 

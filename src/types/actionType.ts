@@ -4,7 +4,7 @@ const UPDATE_TEXT = "UPDATE-TEXT"
 const UPDATE_MESSAGE = "UPDATE-MESSAGE"
 const  ADD_MESSAGE = " ADD-MESSAGE"
 
-export type RootActionType = AddPostActionType | UpdateTextActionType | UpdateMassageTextActionType | AddMassageActionType
+export type RootActionType = AddPostActionType | UpdateTextActionType | UpdateMessageTextActionType | AddMassageActionType
 
 export type AddPostActionType ={
     type: typeof ADD_POST
@@ -16,7 +16,7 @@ export type UpdateTextActionType ={
     newText: string
 }
 
-export type  UpdateMassageTextActionType ={
+export type  UpdateMessageTextActionType ={
     type: typeof UPDATE_MESSAGE
     newMassageText: string
 }

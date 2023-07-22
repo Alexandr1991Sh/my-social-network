@@ -3,8 +3,9 @@ import s from './Dialogs.module.css'
 import { useNavigate } from 'react-router-dom';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import { DialogsDateType, MassagePageType, MessagesDateType } from '../redux/state';
+import { DialogsDateType, MassagePageType, MessagesDateType } from '../store/state';
 import { RootActionType } from '../../types/actionType';
+import { addMessageAC, updateMessageAC } from '../store/reducers/dialogsReducer';
 
 
 type DialogsPropsType = {
@@ -13,17 +14,17 @@ type DialogsPropsType = {
 }
 
 export const Dialogs: React.FC<DialogsPropsType> = (props) => {
-    const navigate = useNavigate();
+
+    // const navigate = useNavigate();
 
     let newMassage = useRef<HTMLTextAreaElement>(null)
 
     const updateMassageHandler = () => {
-        if (newMassage.current) props.dispatch({type: " ADD-MESSAGE", message: newMassage.current.value})
+        if (newMassage.current) props.dispatch(addMessageAC(newMassage.current.value))
     }
 
     const  updateMassageTextHandler = (e: ChangeEvent<HTMLTextAreaElement>)=>{
-        props.dispatch({type: "UPDATE-MESSAGE", newMassageText: e.currentTarget.value})
-        
+        props.dispatch(updateMessageAC(e.currentTarget.value))   
     }
 
     return (
