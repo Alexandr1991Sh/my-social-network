@@ -1,6 +1,6 @@
-// import { rerenderEntireTree } from '../../render';
-
 import { RootActionType } from "../../types/actionType"
+import { dialogReducer } from "./reducer/dialogsReducer"
+import { profileReducer } from "./reducer/profileReducer"
 
 export type StateType = {
     profilePage: ProfilePageType,
@@ -35,8 +35,17 @@ export type MessagesDateType = {
     message: string
 }
 
+export type SroteType = {
+    _state: StateType
+    _callSubscriber: (state: StateType) => void
+    subsribe: (obsrver: (state: StateType) => void) => void
+    getState: () => StateType
+    dispatch: (action: RootActionType) => void
+}
 
-export const store = {
+
+
+export const store: SroteType = {
     _state: {
         profilePage: {
             posts: [
@@ -65,9 +74,9 @@ export const store = {
             ],
             updateMassage: ''
         },
-    } as StateType,
+    },
     _callSubscriber(state: StateType) {
-        console.log("state");
+        console.log(state);
     },
     subsribe(obsrver: (state: StateType) => void) {
         this._callSubscriber = obsrver
@@ -75,31 +84,10 @@ export const store = {
     getState() {
         return this._state
     },
+    dispatch(action: RootActionType) {
 
-    dispatch(action:RootActionType) {
-         if(action.type === "ADD-POST"){
-            let newPost = {
-                id: 5,
-                message: action.newMassage,
-                likesCount: 0
-            };
-            this._state.profilePage.posts.unshift(newPost)
-            this._state.profilePage.updateText = ''
-            this._callSubscriber(this._state);
-         } else if (action.type === "UPDATE-TEXT"){
-            this._state.profilePage.updateText = action.newText
-            this._callSubscriber(this._state);
-         } else if(action.type === "UPDATE-MESSAGE"){
-            this._state.messagesPage.updateMassage = action.newMassageText
-            this._callSubscriber(this._state);
-         }else if(action.type === " ADD-MESSAGE"){
-            let newMessage = {
-                id: 9,
-                message: action.message
-            }
-            this._state.messagesPage.messagesData.push(newMessage)
-            this._state.messagesPage.updateMassage = ''
-            this._callSubscriber(this._state);
-         }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.messagesPage = dialogReducer(this._state.messagesPage, action)
+        this._callSubscriber(this._state);
     }
 }

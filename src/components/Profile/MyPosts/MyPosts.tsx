@@ -3,6 +3,7 @@ import s from './MyPosts.module.css';
 import { PostType } from '../../redux/state';
 import Post from './Post/Post';
 import { RootActionType } from '../../../types/actionType';
+import { AddPostAc } from '../../redux/reducer/profileReducer';
 
 type MyPostsProps = {
     myPosts: PostType[]
@@ -19,7 +20,7 @@ const MyPosts = (props:MyPostsProps) => {
     let postsElements = props.myPosts.map(((el) => <Post key={el.id} title={el.message} likesCount={el.likesCount}/>))
     
     const addPost = () => {
-        if(newTextElement.current) props.dispatch({type: "ADD-POST", newMassage: newTextElement.current.value})
+        if(newTextElement.current) props.dispatch(AddPostAc(newTextElement.current.value))
     }
 
     const updateTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
