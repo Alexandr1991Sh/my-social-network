@@ -3,8 +3,8 @@ import s from './../Dialogs.module.css'
 import {useNavigate} from 'react-router-dom';
 
 type DialogItemPropsType = {
-    name:any
-    id:any
+    name: string
+    id: number
 }
 
 const DialogItem = (props:any) => {
@@ -15,7 +15,7 @@ const DialogItem = (props:any) => {
         }}
         className={s.dialog + " " + s.active}
     >
-        {/*{props.name}*/}
+        {props.name}
     </div>
 }
 export default DialogItem;

@@ -57,11 +57,17 @@ let state: StateType = {
             { id: 3, message: 'Yo' },
             { id: 4, message: 'Yo' },
             { id: 5, message: 'Yo' },
+            { id: 6, message: 'Yo' },
         ]
     }
 }
 
-export let addPost = (postMessage: any) => {
+export let updateText = (newText: string)=>{
+    state.profilePage.updateText = newText
+    rerenderEntireTree(state);
+}
+
+export let addPost = (postMessage: string) => {
     let newPost = {
         id: 5,
         message: postMessage,
@@ -71,8 +77,5 @@ export let addPost = (postMessage: any) => {
     state.profilePage.posts.unshift(newPost)
     rerenderEntireTree(state);
 }
-
-
-
 
 export default state;

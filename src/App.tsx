@@ -8,21 +8,22 @@ import {Route, Routes} from 'react-router-dom';
 import { StateType } from './components/redux/state';
 
 
-type AppProps = {
+type AppPropsType = {
     state: StateType,
-    addPost:any
+    addPost: (postMessage: string)=> void
+    updateText: (newText: string) => void
 }
 
 
-function App(props:AppProps) {
+function App(props:AppPropsType) {
     return (
         <div className="app-wrapper">
             <Header/>
             <Nav/>
             <div className="app-wrapper-content">
                 <Routes>
-                    <Route path={'/dialogs'} element={<Dialogs />}/>
-                    <Route path={'/profile'} element={<Profile stateProfile = {props.state.profilePage}/>}/>
+                    <Route path={'/dialogs'} element={<Dialogs messagesPage={props.state.messagesPage}/>}/>
+                    <Route path={'/profile'} element={<Profile updateText={props.updateText} addPost={props.addPost} profilePage={props.state.profilePage}/>}/>
                 </Routes>
             </div>
         </div>
