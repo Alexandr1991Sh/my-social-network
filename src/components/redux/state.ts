@@ -4,7 +4,7 @@ import { profileReducer } from "./reducer/profileReducer"
 
 export type StateType =  {
     profilePage: ProfilePageType,
-    messagesPage: MassagePageType
+    messagesPage:  MassagePageType
 }
 
 export type PostType = {
