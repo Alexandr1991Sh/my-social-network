@@ -40,7 +40,6 @@ export const dialogsReducer = (state: MassagePageType = initialState, action: Ro
     return state
 }
 
-
 export const updateMessageAC = (newMassageText: string): UpdateMessageTextActionType => {
     return {
         type: "UPDATE-MESSAGE",

@@ -4,12 +4,13 @@ import { PostType } from '../../store/state';
 import Post from './Post/Post';
 import { RootActionType } from '../../../types/actionType';
 import { UpdateTextAC, addPostAC } from '../../store/reducers/profileReducer';
+import {StoreType} from "../../store/reduxStore/storeRedux";
 
 
 type MyPostsProps = {
     myPosts: PostType[]
-    dispatch: (action: RootActionType) => void
     newText: string
+    store: StoreType
 }
 
 const MyPosts = (props: MyPostsProps) => {
@@ -21,11 +22,11 @@ const MyPosts = (props: MyPostsProps) => {
     let postsElements = props.myPosts.map(((el) => <Post key={el.id} title={el.message} likesCount={el.likesCount} />))
 
     const addPost = () => {
-        if (newTextElement.current) props.dispatch(addPostAC(newTextElement.current.value))
+        if (newTextElement.current) props.store.dispatch(addPostAC(newTextElement.current.value))
     }
 
     const updateTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(UpdateTextAC(e.currentTarget.value))
+        props.store.dispatch(UpdateTextAC(e.currentTarget.value))
     }
     const onKeyDownHandler = (e: KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.key === "Enter" && newTextElement.current?.value) addPost()

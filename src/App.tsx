@@ -5,19 +5,17 @@ import Nav from './components/Nav/Nav';
 import Profile from './components/Profile/Profile';
 import { Dialogs } from './components/Dialogs/Dialogs';
 import { Route, Routes } from 'react-router-dom';
-import { StateType } from './components/store/state';
 import { RootActionType } from './types/actionType';
-import { AppRootStateType } from './components/store/reduxStore/storeRedux';
+import {AppRootStateType, StoreType} from './components/store/reduxStore/storeRedux';
 
 
 type AppPropsType = {
     state: AppRootStateType,
     dispatch: (action: RootActionType) => void
+    store: StoreType
 }
 
-
 function App(props: AppPropsType) {
-    // debugger
     return (
         <div className="app-wrapper">
             <Header />
@@ -28,8 +26,9 @@ function App(props: AppPropsType) {
                         dispatch={props.dispatch}
                         messagesPage={props.state.dialogsPage} />} />
                     <Route path={'/profile'} element={<Profile
-                        dispatch={props.dispatch}
-                        profilePage={props.state.profilePage}
+                        // dispatch={props.dispatch}
+                        // profilePage={props.state.profilePage}
+                        store={props.store}
                     />} />
                 </Routes>
             </div>
