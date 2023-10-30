@@ -21,7 +21,7 @@ const MyPostsContainer = (props: MyPostsProps) => {
     }
 
     return <div className={s.postsBlock}>
-        <MyPosts myPosts={addPost}  newText={updateTextHandler}/>
+        <MyPosts myPosts={addPost}   newText={updateTextHandler}/>
     </div>
 
 };
