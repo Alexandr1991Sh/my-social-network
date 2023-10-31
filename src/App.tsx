@@ -26,8 +26,6 @@ function App(props: AppPropsType) {
                         dispatch={props.dispatch}
                         messagesPage={props.state.dialogsPage} />} />
                     <Route path={'/profile'} element={<Profile
-                        // dispatch={props.dispatch}
-                        // profilePage={props.state.profilePage}
                         store={props.store}
                     />} />
                 </Routes>

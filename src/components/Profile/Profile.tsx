@@ -7,10 +7,10 @@ import {StoreType} from "../store/reduxStore/storeRedux";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 type ProfileProps = {
-    profilePage: ProfilePageType
-    //    addPost:(postMessage: string)=> void
-    dispatch: (action: RootActionType) => void
-    // updateText: (newText: string) => void
+    // profilePage: ProfilePageType
+    // //    addPost:(postMessage: string)=> void
+    // // dispatch: (action: RootActionType) => void
+    // // updateText: (newText: string) => void
     store: StoreType
 }
 
