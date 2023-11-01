@@ -2,10 +2,6 @@ import React, {ChangeEvent, KeyboardEvent, useRef} from 'react';
 import s from './MyPosts.module.css';
 import {PostType} from '../../store/state';
 import Post from './Post/Post';
-import {RootActionType} from '../../../types/actionType';
-import {UpdateTextAC, addPostAC} from '../../store/reducers/profileReducer';
-import {StoreType} from "../../store/reduxStore/storeRedux";
-
 
 type MyPostsProps = {
     myPosts: PostType[]

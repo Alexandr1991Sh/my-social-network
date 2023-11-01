@@ -4,7 +4,7 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 import { ProfilePageType } from '../store/state';
 import { RootActionType } from '../../types/actionType';
 import {StoreType} from "../store/reduxStore/storeRedux";
-import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
 type ProfileProps = {
     // profilePage: ProfilePageType
