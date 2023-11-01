@@ -52,7 +52,7 @@ type MapDispatchToPropsType = {
 const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => {
     return {
         myPosts: state.profilePage.posts,
-        newText: state.dialogsPage.updateMassage
+        newText: state.profilePage.updateText
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {

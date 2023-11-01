@@ -1,11 +1,11 @@
-import { AddPostActionType, RootActionType, UpdateTextActionType } from './../../../types/actionType';
-import { ProfilePageType } from "../state";
+import {AddPostActionType, RootActionType, UpdateTextActionType} from './../../../types/actionType';
+import {ProfilePageType} from "../state";
 
-const initialState:ProfilePageType  = {
+const initialState: ProfilePageType = {
     posts: [
-        { id: 1, message: 'my first post', likesCount: 12 },
-        { id: 2, message: 'how are you ?', likesCount: 11 },
-        { id: 3, message: 'put likes', likesCount: 17 }
+        {id: 1, message: 'my first post', likesCount: 12},
+        {id: 2, message: 'how are you ?', likesCount: 11},
+        {id: 3, message: 'put likes', likesCount: 17}
     ],
     updateText: '',
 }
@@ -18,10 +18,15 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ro
             message: action.newMassage,
             likesCount: 0
         };
-        state.posts.unshift(newPost)
-        state.updateText = ''
+        let stateCopy = {...state}
+        stateCopy.posts = [...state.posts]
+        stateCopy.posts.unshift(newPost)
+        stateCopy.updateText = ''
+        return stateCopy
     } else if (action.type === "UPDATE-TEXT") {
-        state.updateText = action.newText
+        let stateCopy = {...state}
+        stateCopy.updateText = action.newText
+        return stateCopy
     }
     return state
 }
