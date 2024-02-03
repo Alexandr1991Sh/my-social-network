@@ -16,7 +16,8 @@ const MyPosts = (props: MyPostsProps) => {
     let newTextElement = useRef<HTMLTextAreaElement>(null)
 
 
-    let postsElements = props.myPosts.map(((el) => <Post key={el.id} title={el.message} likesCount={el.likesCount}/>))
+    let postsElements = props.myPosts
+        .map(((el) => <Post key={el.id} title={el.message} likesCount={el.likesCount}/>))
 
     const addPost = () => {
         if (newTextElement.current) props.addPost(newTextElement.current.value)

@@ -35,7 +35,7 @@
 
 import {PostType} from '../../store/state';
 import {UpdateTextAC, addPostAC} from '../../store/reducers/profileReducer';
-import MyPosts from "./MyPosts";
+import MyPosts from "./MyPosts" ;
 import {AppRootStateType} from "../../store/reduxStore/storeRedux";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
