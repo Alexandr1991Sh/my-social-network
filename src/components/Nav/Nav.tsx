@@ -20,6 +20,8 @@ const navigate = useNavigate()
         <div className={classes.item} onClick={() => {NavigateHandler('Music')}}>Music</div>
 
         <div className={classes.item} onClick={() => {NavigateHandler('Settings')}}>Settings</div>
+
+        <div className={classes.item} onClick={() => { NavigateHandler('users') }}>Users</div>
     </nav>
 };
 
