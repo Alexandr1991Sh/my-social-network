@@ -1,17 +1,27 @@
 import {UserItem} from "../../Users/Users";
 
 type InitialStateType = {
-    users: UserItem[];
+    users: UserItem[]
+    pageSize: number
+    totalUserCount: number
+    currentPade: number
 };
 
-type ActionsUsersType = ReturnType<typeof followAC> | ReturnType<typeof unfollowAC> | ReturnType<typeof setUsersAC>
+type ActionsUsersType = ReturnType<typeof followAC>
+    | ReturnType<typeof unfollowAC>
+    | ReturnType<typeof setUsersAC>
+    | ReturnType<typeof setCurrentPageAC>
+    | ReturnType<typeof setTotalUsersCountAC>
 
-const initialState: any = {
-    users: []
+const initialState: InitialStateType = {
+    users: [],
+    pageSize: 10,
+    totalUserCount: 0,
+    currentPade: 1
 }
 
 
-export const usersReducer = (state: any = initialState, action: ActionsUsersType): InitialStateType => {
+export const usersReducer = (state: InitialStateType = initialState, action: ActionsUsersType): InitialStateType => {
     switch (action.type) {
         case "FOLLOW":
             return {
@@ -22,11 +32,17 @@ export const usersReducer = (state: any = initialState, action: ActionsUsersType
         case "UNFOLLOW":
             return {
                 ...state,
-                users: state.users.map((u: any) => u.id === action.userID ? {...u, followed: false} : u)
+                users: state.users.map((u: UserItem) => u.id === action.userID ? {...u, followed: false} : u)
             }
 
         case "SET-USERS":
             return {...state, users: [...action.users]}
+
+        case "SET-CURRENT-PAGE":
+            return {...state, currentPade: action.currentPage}
+
+        case "SET-USERS-TOTAL-COUNT":
+            return {...state, totalUserCount: action.totalUsersCount}
 
         default:
             return state
@@ -52,5 +68,19 @@ export const setUsersAC = (users: UserItem[]) => {
     return {
         type: "SET-USERS",
         users
+    } as const
+}
+
+export const setCurrentPageAC = (currentPage: number) => {
+    return {
+        type: "SET-CURRENT-PAGE",
+        currentPage
+    } as const
+}
+
+export const setTotalUsersCountAC = (totalUsersCount: number) => {
+    return {
+        type: 'SET-USERS-TOTAL-COUNT',
+        totalUsersCount
     } as const
 }
